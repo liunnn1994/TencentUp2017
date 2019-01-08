@@ -23,7 +23,7 @@ function init() {
   // 初始化场景
   scene = new THREE.Scene();
   //雾化
-  scene.fog = new THREE.FogExp2(0x999999, 0.00525);
+  scene.fog = new THREE.FogExp2(0x05050c, 0.0005);
   //初始化renderer
   renderer = new THREE.WebGLRenderer();
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -34,7 +34,10 @@ function init() {
   around = new THREE.Geometry();
   // 初始化贴图
   const textureLoader = new THREE.TextureLoader();
-  const mapDot = textureLoader.load('assets/gradient.png');  // 圆点
+  //解决跨域问题
+  textureLoader.crossOrigin='';
+  // 圆点
+  const mapDot = textureLoader.load('assets/gradient.png');
 
 
   //初始变换点组
@@ -69,7 +72,7 @@ function init() {
 }
 
 function loadObject() {
-  var loader = new THREE.LegacyJSONLoader();
+  const loader = new THREE.LegacyJSONLoader();
   loader.load('assets/qr.json', function (geo, materials) {
     geo.center();
     geo.normalize();
@@ -141,15 +144,15 @@ function tweenObj(index) {
   let ani = null;
   geometry.vertices.forEach(function (e, i, arr) {
     ani = new TWEEN.Tween(e);
-    var length = glist[index].vertices.length;
-    var o = glist[index].vertices[i % length];
+    const length = glist[index].vertices.length;
+    const o = glist[index].vertices[i % length];
     ani.to({
       x: o.x,
       y: o.y,
       z: o.z
     }, 1000).easing(TWEEN.Easing.Exponential.In).delay(400 * Math.random()).start();
   });
-
+  //动画完成时的回调
   ani.onComplete(function (params) {
     canMouseMove = true;
     flag = false;
