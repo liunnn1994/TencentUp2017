@@ -221,3 +221,8 @@ function render() {
 
 5. 流畅度方面，使用`vertex shader`性能可能更好，感觉好高深，等大神踩踩坑。
 
+> 参考链接：
+>
+> 1. [threejs+tweenjs实现3D粒子模型切换](https://juejin.im/post/5b8d47cce51d4538bf55e3a8)。
+> 2. [3D粒子效果在网页端实现分享](https://tgideas.qq.com/gicp/news/475/6515254.html?from=list)。
+
